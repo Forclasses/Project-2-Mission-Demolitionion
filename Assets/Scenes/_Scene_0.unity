@@ -927,11 +927,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3331065652384567428, guid: e4c6f303856067c479848f4d16eb9f0b, type: 3}
+  velocityMult: 10
   rubber: {fileID: 1027086518}
   firstPoint: {fileID: 452148576}
   secondPoint: {fileID: 835157202}
   launchPos: {x: 0, y: 0, z: 0}
-  projectile: {fileID: 369148848453726440, guid: e4c6f303856067c479848f4d16eb9f0b, type: 3}
+  projectile: {fileID: 0}
   aimingMode: 0
   launchPoint: {fileID: 535421982}
 --- !u!1 &1913015651

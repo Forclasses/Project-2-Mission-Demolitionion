@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Slingshot : MonoBehaviour
@@ -7,6 +8,7 @@ public class Slingshot : MonoBehaviour
 
     [Header("Inscribed")]
     public GameObject projectilePrefab;
+    public float velocityMult = 10f;
 
     [Header("Dynamic")]
     [SerializeField] private LineRenderer rubber;
@@ -50,12 +52,45 @@ public class Slingshot : MonoBehaviour
     void OnMouseDown()
     {
         aimingMode = true;
-        GameObject projectile = Instantiate( projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        //It took me 30 mintues to figure out  that THIS WHAT THE COMMAND NEEDS TO BE 
+        projectile = Instantiate( projectilePrefab , transform.position, Quaternion.identity) as GameObject;
+        //GameObject projectile = Instantiate( projectilePrefab) as GameObject;
         projectile.transform.position = launchPos;
         rubber.SetPosition(0, firstPoint.position);
         //rubber.SetPosition(1, projectile.position);
         rubber.SetPosition(2, secondPoint.position);
 
         projectile.GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    void Update()
+    {
+     if (!aimingMode) return;
+
+     Vector3 mousePos2D = Input.mousePosition;
+     mousePos2D.z = -Camera.main.transform.position.z;
+     Vector3 mousePos3D = Camera.main.ScreenToWorldPoint( mousePos2D );
+
+     Vector3 mouseDelta = mousePos3D -launchPos;
+
+     float maxMagnitude = this.GetComponent<SphereCollider>().radius;
+     //pg697 need break
+     if (mouseDelta.magnitude > maxMagnitude){
+        mouseDelta.Normalize();
+        mouseDelta *= maxMagnitude;
+     }
+
+     Vector3 projPos = launchPos + mouseDelta;
+     projectile.transform.position = projPos;
+
+     if( Input.GetMouseButtonUp(0) ){
+        aimingMode = false ;
+        Rigidbody projRB = projectile.GetComponent<Rigidbody>();
+        projRB.isKinematic = false;
+        projRB.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        projRB.linearVelocity = -mouseDelta * velocityMult;
+        projectile = null;
+
+     }
     }
 }
