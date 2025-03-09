@@ -89,6 +89,7 @@ public class Slingshot : MonoBehaviour
         projRB.isKinematic = false;
         projRB.collisionDetectionMode = CollisionDetectionMode.Continuous;
         projRB.linearVelocity = -mouseDelta * velocityMult;
+        FallowCam.POI = projectile;
         projectile = null;
 
      }
