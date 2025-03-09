@@ -8,6 +8,7 @@ public class Slingshot : MonoBehaviour
 
     [Header("Inscribed")]
     public GameObject projectilePrefab;
+    public GameObject projectilePrefabHeavy;
     public float velocityMult = 10f;
 
     public GameObject projLinePrefab;
@@ -24,6 +25,8 @@ public class Slingshot : MonoBehaviour
     public bool aimingMode;
 
     public GameObject launchPoint;
+
+    public float coinflip = 0;
 
     void Awake()
     {
@@ -55,7 +58,15 @@ public class Slingshot : MonoBehaviour
     {
         aimingMode = true;
         //It took me 30 mintues to figure out  that THIS WHAT THE COMMAND NEEDS TO BE 
-        projectile = Instantiate( projectilePrefab , transform.position, Quaternion.identity) as GameObject;
+
+        coinflip = Random.Range(0.0f, 1.0f);
+        if(coinflip < 0.9){
+            projectile = Instantiate( projectilePrefab , transform.position, Quaternion.identity);
+        } else {
+            projectile = Instantiate( projectilePrefabHeavy , transform.position, Quaternion.identity);
+        }
+
+        //projectile = Instantiate( projectilePrefab , transform.position, Quaternion.identity) as GameObject;
         //GameObject projectile = Instantiate( projectilePrefab) as GameObject;
         projectile.transform.position = launchPos;
         //rubber.SetPosition(0, firstPoint.position);

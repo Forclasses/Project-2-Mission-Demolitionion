@@ -13,6 +13,8 @@ public class MissionDemolition : MonoBehaviour
     [Header("Inscribed")]
     public Text uitLevel;
     public Text uitShots;
+
+    public Text Gameover;
     public Vector3 castlePos;
     public GameObject[] castles;
 
@@ -33,6 +35,7 @@ public class MissionDemolition : MonoBehaviour
 
         level = 0;
         levelMax = castles.Length;
+        
         StartLevel();
     }
 
@@ -47,6 +50,7 @@ public class MissionDemolition : MonoBehaviour
         castle.transform.position = castlePos;
 
         Goal.goalMet = false;
+        
 
         UpdateGUI();
 
@@ -58,7 +62,7 @@ public class MissionDemolition : MonoBehaviour
         uitShots.text = "Shots taken: "+shotsTaken;
 
     }
-
+    // going to be honst no idea how to make the button go inviable untill time so am gonna miss that
 
     void Update()
     {
@@ -68,6 +72,10 @@ public class MissionDemolition : MonoBehaviour
             mode = GameMode.levelEnd;
             Invoke("NextLevel", 2f);
         }
+         //else if {
+         //   Gameover.text = "GAME OVER YOU SHOT: "+shotsTaken +" Over " + levelMax + " levels";
+          //  Application.Quit();
+        //}
 
     }
 
@@ -76,6 +84,7 @@ public class MissionDemolition : MonoBehaviour
         if (level == levelMax){
             level = 0;
             shotsTaken = 0;
+
         }
         StartLevel();
     }
