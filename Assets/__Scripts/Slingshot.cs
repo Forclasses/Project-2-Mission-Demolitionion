@@ -58,9 +58,10 @@ public class Slingshot : MonoBehaviour
     {
         aimingMode = true;
         //It took me 30 mintues to figure out  that THIS WHAT THE COMMAND NEEDS TO BE 
+        //20% chance to get an heavy ball that will blow the structurs up
 
         coinflip = Random.Range(0.0f, 1.0f);
-        if(coinflip < 0.9){
+        if(coinflip < 0.8){
             projectile = Instantiate( projectilePrefab , transform.position, Quaternion.identity);
         } else {
             projectile = Instantiate( projectilePrefabHeavy , transform.position, Quaternion.identity);
