@@ -10,6 +10,8 @@ public class Slingshot : MonoBehaviour
     public GameObject projectilePrefab;
     public float velocityMult = 10f;
 
+    public GameObject projLinePrefab;
+
     [Header("Dynamic")]
     [SerializeField] private LineRenderer rubber;
     [SerializeField] private Transform firstPoint;
@@ -90,6 +92,7 @@ public class Slingshot : MonoBehaviour
         projRB.collisionDetectionMode = CollisionDetectionMode.Continuous;
         projRB.linearVelocity = -mouseDelta * velocityMult;
         FallowCam.POI = projectile;
+        Instantiate<GameObject>(projLinePrefab, projectile.transform);
         projectile = null;
 
      }
