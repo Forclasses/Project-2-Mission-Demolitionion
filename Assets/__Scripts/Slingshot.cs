@@ -58,9 +58,9 @@ public class Slingshot : MonoBehaviour
         projectile = Instantiate( projectilePrefab , transform.position, Quaternion.identity) as GameObject;
         //GameObject projectile = Instantiate( projectilePrefab) as GameObject;
         projectile.transform.position = launchPos;
-        rubber.SetPosition(0, firstPoint.position);
+        //rubber.SetPosition(0, firstPoint.position);
         //rubber.SetPosition(1, projectile.position);
-        rubber.SetPosition(2, secondPoint.position);
+        //rubber.SetPosition(2, secondPoint.position);
 
         projectile.GetComponent<Rigidbody>().isKinematic = true;
     }
@@ -94,6 +94,7 @@ public class Slingshot : MonoBehaviour
         FallowCam.POI = projectile;
         Instantiate<GameObject>(projLinePrefab, projectile.transform);
         projectile = null;
+        MissionDemolition.SHOT_FIRED();
 
      }
     }
