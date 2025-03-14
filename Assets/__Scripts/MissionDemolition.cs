@@ -39,6 +39,10 @@ public class MissionDemolition : MonoBehaviour
         StartLevel();
     }
 
+    //I added a few castels to up the fun factor, they are solveable but if you try to just go lazy don't exepect much fun
+    //One thing I would have liked to do is made the play screen bigger that way I could have made the castles more elebrate.
+    
+
     void StartLevel(){
         if (castle != null){
             Destroy( castle );

@@ -58,7 +58,7 @@ public class Slingshot : MonoBehaviour
     {
         aimingMode = true;
         //It took me 30 mintues to figure out  that THIS WHAT THE COMMAND NEEDS TO BE 
-        //20% chance to get an heavy ball that will blow the structurs up
+        //20% chance to get an heavy ball that will blow the structurs up / will knock alot more stuff down
 
         coinflip = Random.Range(0.0f, 1.0f);
         if(coinflip < 0.8){
@@ -76,6 +76,11 @@ public class Slingshot : MonoBehaviour
 
         projectile.GetComponent<Rigidbody>().isKinematic = true;
     }
+
+    //I am scared to attempted add rubber due to the fact that the project is done and I don't want to break anything else on accident
+    //I did look at the recording though, but have decided that is just to much of a risk to  try to add new config files along side with messing with slingshot
+    // that if there was a error it could ruin the whole game. 
+    // I just don't feel confortable trying to add it.
 
     void Update()
     {
